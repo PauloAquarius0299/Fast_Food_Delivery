@@ -3,9 +3,7 @@ package com.paulotech.food_fast.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.paulotech.food_fast.dto.RestaurantDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,7 @@ public class User {
 
     private String email;
     private String password;
-    private USER_ROLE role;
+    private USER_ROLE role=USER_ROLE.ROLE_CUSTOMER;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
