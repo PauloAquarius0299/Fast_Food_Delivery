@@ -1,16 +1,15 @@
 package com.paulotech.food_fast.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Food {
@@ -20,6 +19,8 @@ public class Food {
     private Long id;
 
     private String name;
+
+    private String description;
 
     private Long price;
 
@@ -38,9 +39,10 @@ public class Food {
     private boolean isVegetarian;
     private boolean isSeasonal;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "food_id")
     private List<IngredientsItem> ingredients = new ArrayList<>();
+
 
     private Date creationdate;
 }

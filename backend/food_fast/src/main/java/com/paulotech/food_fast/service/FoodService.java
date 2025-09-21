@@ -12,4 +12,7 @@ public interface FoodService {
     void deleteFood(Long foodId) throws Exception;
     List<Food> getRestaurantFood(Long restaurantId, boolean isVegetarian, boolean isNonveg, boolean isSeasonal,
                                  String foodCategory);
+    List<Food> searchFood(String keyword);
+    Food findFoodById(Long foodId) throws Exception;
+    Food updateAvalibityStatus(Long foodId) throws Exception;
 }
