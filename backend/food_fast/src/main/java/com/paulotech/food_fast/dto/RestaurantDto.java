@@ -3,10 +3,13 @@ package com.paulotech.food_fast.dto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Embeddable
 public class RestaurantDto {
     private String title;
