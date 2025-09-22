@@ -1,0 +1,7 @@
+package com.paulotech.food_fast.repository;
+
+import com.paulotech.food_fast.model.CartItem;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CartItemRepository extends JpaRepository<CartItem, Long> {
+}

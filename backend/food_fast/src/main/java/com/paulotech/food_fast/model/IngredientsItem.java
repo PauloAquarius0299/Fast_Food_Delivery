@@ -19,6 +19,10 @@ public class IngredientsItem {
 
     @JsonIgnore
     @ManyToOne
+    private Restaurant restaurant;
+
+    @JsonIgnore
+    @ManyToOne
     private IngredientCategory category;
 
     private boolean inStoke = true;

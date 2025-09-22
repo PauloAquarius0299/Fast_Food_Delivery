@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/admin/restaurants")
 @RequiredArgsConstructor
@@ -63,12 +65,12 @@ public class AdminRestaurantController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity<Restaurant> findRestaurantByUserId(
+    public ResponseEntity<List<Restaurant>> findRestaurantByUserId(
             @RequestHeader("Authorization") String jwt) throws Exception {
 
         User user = userService.findUserByJwtToken(jwt);
 
-        Restaurant restaurant = restaurantService.getRestaurantByUserId(user.getId());
+        List<Restaurant> restaurant = restaurantService.getRestaurantByUserId(user.getId());
 
         return ResponseEntity.ok(restaurant);
     }

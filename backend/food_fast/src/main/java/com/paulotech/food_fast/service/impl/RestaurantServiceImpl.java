@@ -90,13 +90,16 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant getRestaurantByUserId(Long userId) throws Exception {
-        Restaurant restaurant= restaurantRepository.findByOwnerId(userId);
-        if(restaurant==null){
-            throw new Exception("restaurant not found with owner id " + userId);
+    public List<Restaurant> getRestaurantByUserId(Long userId) throws Exception {
+        List<Restaurant> restaurants = restaurantRepository.findByOwnerId(userId);
+
+        if (restaurants == null || restaurants.isEmpty()) {
+            throw new Exception("No restaurants found with owner id " + userId);
         }
-        return restaurant;
+
+        return restaurants;
     }
+
 
     @Override
     public RestaurantDto addToFavorites(Long restaurantId, User userId) throws Exception {
