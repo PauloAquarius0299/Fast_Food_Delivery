@@ -2,9 +2,11 @@ package com.paulotech.food_fast.controller;
 
 import com.paulotech.food_fast.model.Cart;
 import com.paulotech.food_fast.model.CartItem;
+import com.paulotech.food_fast.model.User;
 import com.paulotech.food_fast.request.AddCartItemRequest;
 import com.paulotech.food_fast.request.UpdateCartItemRequest;
 import com.paulotech.food_fast.service.CartService;
+import com.paulotech.food_fast.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.sql.Update;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CartController {
     private final CartService cartService;
+    private final UserService userService;
 
     @PostMapping("/cart/add")
     public ResponseEntity<CartItem> addItemCart(@RequestBody AddCartItemRequest request,
@@ -40,13 +43,15 @@ public class CartController {
 
     @PutMapping("/cart/clear")
     public ResponseEntity<Cart> clearItemCart(@RequestHeader("Authorization") String jwt) throws Exception{
-        Cart cart = cartService.clearCart(jwt);
+        User user = userService.findUserByJwtToken(jwt);
+        Cart cart = cartService.findCartByUserId(user.getId());
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
     @GetMapping("/cart")
     public ResponseEntity<Cart> findItemCart(@RequestHeader("Authorization") String jwt) throws Exception{
-        Cart cart = cartService.findCartByUserId(jwt);
+        User user = userService.findUserByJwtToken(jwt);
+        Cart cart = cartService.findCartByUserId(user.getId());
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 }
