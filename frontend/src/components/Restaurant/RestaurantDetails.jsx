@@ -1,6 +1,7 @@
 import { Clock, MapPin } from "lucide-react";
 import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from "@mui/material";
 import { useState } from "react";
+import MenuCard from "./MenuCard";
 
 const categories = [
   "italiano",
@@ -24,6 +25,8 @@ const foodTypeOptions = [
   { label: "Doces", value: "candies" },
   { label: "Cafe da manhã", value: "breakfast" },
 ];
+
+const menu =[1,1,1,1,1,1];
 
 const RestaurantDetails = () => {
   const [selectedFoodType, setSelectedFoodType] = useState("all");
@@ -141,7 +144,9 @@ const RestaurantDetails = () => {
           </div>
         </div>
 
-        <div className="space-y-10 lg:w-[80%] lg:pl-10">menu</div>
+        <div className="space-y-10 lg:w-[80%] lg:pl-10">
+          {menu.map((item) => <MenuCard />)}
+        </div>
       </section>
     </div>
   );
