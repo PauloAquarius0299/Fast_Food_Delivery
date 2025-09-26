@@ -1,9 +1,11 @@
+import RestaurantCard from '../Restaurant/RestaurantCard';
 import './Home.css'
 import MultiItemCarousel from './MultiItemCarousel';
 
+const restaurant=[1,1,1,1,1,1]
 const Home = () => {
     return (
-        <div>
+        <div className='pb-10'>
             <section className='banner -z-50 relative flex flex-col justify-center items-center'>
                 <div className="w-[50vw] z-10 text-center">
                     <h3 className="text-2xl z-10 lg:text-6xl font-bold  py-15">FastFood</h3>
@@ -21,8 +23,13 @@ const Home = () => {
                 <MultiItemCarousel />
             </section>
 
-            <section className='px-5 lg:px-20'>
-                <h1 className='text-2xl font-semibold text-white px-3'>Encomende dos seus favoritos escolhidos</h1>
+            <section className='px-5 lg:px-20 pt-10'>
+                <h1 className='text-2xl font-semibold text-white pb-8'>Encomende dos seus favoritos escolhidos</h1>
+                <div className='flex flex-wrap items-center justify-around gap-5'>
+                    {
+                        restaurant.map((item)=><RestaurantCard />)
+                    }
+                </div>
             </section>
         </div>
     )
